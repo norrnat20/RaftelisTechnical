@@ -18,7 +18,7 @@ namespace RaftelisTechnical
             It has no return value.*/
             for (int i = 0; i < parcels.Length-1; i++) {
                 // Parcel current = parcels[i];
-                Console.WriteLine(parcels[i].getPin() + "|" + parcels[i].getAddress() + "|" + parcels[i].getOwner() + "|" + parcels[i].getMarketValue() + "|" + parcels[i].getSaleDate() + "|" + parcels[i].getSalePrice() + "|" + parcels[i].getLink());
+                Console.WriteLine(parcels[i]);
             }
         }
     }

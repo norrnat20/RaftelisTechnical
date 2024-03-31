@@ -23,6 +23,9 @@ namespace RaftelisTechnical
             // Parse File into nice data
             Console.WriteLine("Mode is: " + mode);
             Parcel[] parcels = ParcelParser.Parser();
+            // Console.WriteLine(parcels[1]);
+            parcels[1].getPin();
+            // return;
             // Sort data by street name / number
             Parcel[] sortedAdd = ParcelSorter.SortAddress(parcels);
             // Sort data by first name

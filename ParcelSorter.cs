@@ -24,10 +24,11 @@ namespace RaftelisTechnical
             int i = 1;
             while (i < A.Length){
                 int j = i;
-                    while ((j>0) && (A[j-1] > A[j])){ // change this logic
-                        swap(A,j,j-1);
-                        j--;
-                    }
+                    // while ((j>0) && (A[j-1] > A[j])){ // change this logic
+                        // int result = String.Compare(A[j-1], A[j])
+                        //swap(A,j,j-1);
+                        //j--;
+                    //}
                 i++;
             }
         }

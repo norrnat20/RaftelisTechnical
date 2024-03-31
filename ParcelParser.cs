@@ -1,6 +1,6 @@
 /* Natalie Norris
 Created: 3/26/2024 - Natalie Norris
-Modified: 3/26/2024 - Natalie Norris
+Modified: 3/30/2024 - Natalie Norris
 */
 
 using System;
@@ -76,6 +76,9 @@ namespace RaftelisTechnical
             return link;
         }
     
+        public override string ToString() {
+            return (pin + "|" + address + "|" + owner + "|" + marketvalue + "|" + saledate + "|" + saleprice + "|" + link);
+        }
     }
 
     class ParcelParser {
@@ -96,8 +99,8 @@ namespace RaftelisTechnical
             string[] lines = File.ReadAllLines(filey);
 
             Parcel[] parcels = new Parcel[lines.Length-1];
-            // for (int i = 1; i < lines.Length-1; i++) {
-            for (int i = 1; i < 10; i++) {
+            for (int i = 1; i < lines.Length-1; i++) {
+            // for (int i = 1; i < 10; i++) {
                 string[] tokens = lines[i].Split("|");
                 parcels[i] = new Parcel(tokens);
             }
