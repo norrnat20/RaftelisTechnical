@@ -1,33 +1,109 @@
 /* Natalie Norris
-Created: 10/26/2024 - Natalie Norris
-Modified: 10/26/2024 - Natalie Norris
+Created: 3/26/2024 - Natalie Norris
+Modified: 3/26/2024 - Natalie Norris
 */
 
 using System;
+using System.IO;
 
 namespace RaftelisTechnical
 {
-  class ParcelParser
-  {
-    static void Main(string[] args)
-    {
-      Console.WriteLine("Hello World!");    
+    public class Parcel {
+        // PIN|ADDRESS|OWNER|MARKET_VALUE|SALE_DATE|SALE_PRICE|LINK
+        // 6000090000|51 LOST RIVER AIRPORT RUNWAY|CHUNG, SAMUEL & HEIDI|339100.00|8/1/2003|152000.00|http://okanoganwa.taxsifter.com/Search/results.aspx?q=6000090000
+        string pin;
+        string address;
+        string addressnum;
+        string addressstreet;
+        string owner;
+        string firstname;
+        string lastname;
+        string marketvalue;
+        string saledate;
+        string saleprice;
+        string link;
+
+        public Parcel(string[] input) {
+            // tow constructors ? for list and individual args form
+            pin = input[0];
+            address = input[1]; // full address
+            string[] temp = address.Split(' ', 2);
+            addressnum = temp[0];
+            addressstreet = temp[1];
+
+            owner = input[2]; // full name
+            string[] temptwo = owner.Split(", ", 2);
+            if (temptwo.Length != 1) {
+                lastname = temptwo[0];
+                firstname = temptwo[1];
+            } else {
+                lastname = temptwo[0];
+                firstname = temptwo[0];
+            }
+            
+
+            marketvalue = input[3];
+            saledate = input[4];
+            saleprice = input[5];
+            link = input[6];
+        }
+
+        public string getPin() {
+            return pin;
+        }
+        public string getAddress() {
+            return address;
+        }
+        public string getAddressNum() {
+            return addressnum;
+        }
+        public string getAddressStreet() {
+            return addressstreet;
+        }
+        public string getOwner() {
+            return owner;
+        }
+        public string getMarketValue() {
+            return marketvalue;
+        }
+        public string getSaleDate() {
+            return saledate;
+        }
+        public string getSalePrice() {
+            return saleprice;
+        }
+        public string getLink() {
+            return link;
+        }
+    
     }
-  }
+
+    class ParcelParser {
+        // public static Parcel[] parcels;
+        public static void Test() {
+            Console.WriteLine("ParcelParser.Test!");
+            string filey = "Parcels.txt";
+            string[] lines = File.ReadAllLines(filey);
+            string[] tokens = lines[0].Split("|");
+            foreach (string type in tokens)
+                Console.WriteLine(type);
+        }
+
+        public static Parcel[] Parser() {
+            Console.WriteLine("ParcelParser.Parser()");
+            // Read Parcels from file
+            string filey = "Parcels.txt";
+            string[] lines = File.ReadAllLines(filey);
+
+            Parcel[] parcels = new Parcel[lines.Length-1];
+            // for (int i = 1; i < lines.Length-1; i++) {
+            for (int i = 1; i < 10; i++) {
+                string[] tokens = lines[i].Split("|");
+                parcels[i] = new Parcel(tokens);
+            }
+            return parcels;
+        }
+    }
 }
 
 
-/*
-PIN|ADDRESS|OWNER|MARKET_VALUE|SALE_DATE|SALE_PRICE|LINK
-6000090000|51 LOST RIVER AIRPORT RUNWAY|CHUNG, SAMUEL & HEIDI|339100.00|8/1/2003|152000.00|http://okanoganwa.taxsifter.com/Search/results.aspx?q=6000090000
-
-
-[x] Please reply to me to confirm that you received this request and could access the attachment as soon as you can.
-[ ] Please create a console or front-end application in the language(s) of your choice to accomplish the request. (Bonus if the code is in C#)
-[ ] I’m attaching a delimited text file containing parcel, owner, address, and other data. Please use these records to fulfill the request.
-[ ] Please sort these records by street name and then street number. Print the results with all columns included to the console, or visualize them in the front-end app.
-[ ] Next, sort these records in a new way, by first name. Print the results with all columns included to the console, or visualize them in the front-end app.
-[ ] *For extra credit, please add a column to the results that links to Google Maps with the address highlighted. To help with this, the city is Mazama WA.
-[ ] Please upload your project to Github and reply all to this email with a link to the project.
-[ ] Please complete this request by 9am PDT on 4/1/24
-*/
