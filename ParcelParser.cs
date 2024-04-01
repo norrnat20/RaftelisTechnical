@@ -1,13 +1,12 @@
-/* Natalie Norris
+/* ParcelParser.cs
 Created: 3/26/2024 - Natalie Norris
-Modified: 3/30/2024 - Natalie Norris
+Modified: 3/31/2024 - Natalie Norris
 */
 
 using System;
 using System.IO;
 
-namespace RaftelisTechnical
-{
+namespace RaftelisTechnical {
     public class Parcel {
         // PIN|ADDRESS|OWNER|MARKET_VALUE|SALE_DATE|SALE_PRICE|LINK
         // 6000090000|51 LOST RIVER AIRPORT RUNWAY|CHUNG, SAMUEL & HEIDI|339100.00|8/1/2003|152000.00|http://okanoganwa.taxsifter.com/Search/results.aspx?q=6000090000
@@ -22,9 +21,12 @@ namespace RaftelisTechnical
         string saledate;
         string saleprice;
         string link;
+        string maps;
 
         public Parcel(string[] input) {
-            // tow constructors ? for list and individual args form
+            /*  Creates a Parcel object.
+                Takes in an array of strings.
+            */
             pin = input[0];
             address = input[1]; // full address
             string[] temp = address.Split(' ', 2);
@@ -33,6 +35,7 @@ namespace RaftelisTechnical
 
             owner = input[2]; // full name
             string[] temptwo = owner.Split(", ", 2);
+            // If there is no first/last name (ex: Company LLC), set first/last to the same thing
             if (temptwo.Length != 1) {
                 lastname = temptwo[0];
                 firstname = temptwo[1];
@@ -41,16 +44,21 @@ namespace RaftelisTechnical
                 firstname = temptwo[0];
             }
             
-
             marketvalue = input[3];
             saledate = input[4];
             saleprice = input[5];
             link = input[6];
+
+            // google maps link
+            string[] tempthree = address.Split(' ');
+            maps = "https://www.google.com/maps/place/";
+            for (int i = 0; i < tempthree.Length; i++) {
+                maps += tempthree[i] + "+";
+            }
+            maps += "Mazama+WA+98833";
+
         }
 
-        public string getPin() {
-            return pin;
-        }
         public string getAddress() {
             return address;
         }
@@ -60,49 +68,37 @@ namespace RaftelisTechnical
         public string getAddressStreet() {
             return addressstreet;
         }
+
         public string getOwner() {
             return owner;
         }
-        public string getMarketValue() {
-            return marketvalue;
+        public string getFirstName() {
+            return firstname;
         }
-        public string getSaleDate() {
-            return saledate;
+        public string getLastName() {
+            return lastname;
         }
-        public string getSalePrice() {
-            return saleprice;
-        }
-        public string getLink() {
-            return link;
-        }
-    
         public override string ToString() {
-            return (pin + "|" + address + "|" + owner + "|" + marketvalue + "|" + saledate + "|" + saleprice + "|" + link);
+            // prints nicely
+            return (pin + "|" + address + "|" + owner + "|" + marketvalue + "|" + saledate + "|" + saleprice + "|" + link + "|" + maps);
         }
     }
 
     class ParcelParser {
-        // public static Parcel[] parcels;
-        public static void Test() {
-            Console.WriteLine("ParcelParser.Test!");
-            string filey = "Parcels.txt";
-            string[] lines = File.ReadAllLines(filey);
-            string[] tokens = lines[0].Split("|");
-            foreach (string type in tokens)
-                Console.WriteLine(type);
-        }
-
         public static Parcel[] Parser() {
-            Console.WriteLine("ParcelParser.Parser()");
+            /*  Parses a text file of 'Parcels'
+                and returns an array of Parcel objects.
+            */
+            
             // Read Parcels from file
             string filey = "Parcels.txt";
             string[] lines = File.ReadAllLines(filey);
 
-            Parcel[] parcels = new Parcel[lines.Length-1];
+            // Create the list of Parcel objects
+            Parcel[] parcels = new Parcel[lines.Length-2];
             for (int i = 1; i < lines.Length-1; i++) {
-            // for (int i = 1; i < 10; i++) {
                 string[] tokens = lines[i].Split("|");
-                parcels[i] = new Parcel(tokens);
+                parcels[i-1] = new Parcel(tokens);
             }
             return parcels;
         }
