@@ -1,8 +1,8 @@
 # RaftelisTechnical
-Natalie Norris__
-Raftelis Technical Interview Repo__
-Created: 3/26/2024 - Natalie Norris__
-Modified: 3/31/2024 - Natalie Norris
+Natalie Norris  
+Raftelis Technical Interview Repo  
+Created: 3/26/2024 - Natalie Norris  
+Modified: 3/31/2024 - Natalie Norris  
 ## How to run
 ### Ubuntu - mono-complete
 1. Install mono-complete: `sudo apt install mono-complete`.
