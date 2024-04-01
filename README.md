@@ -1,7 +1,7 @@
 # RaftelisTechnical
-Natalie Norris
-Raftelis Technical Interview Repo
-Created: 3/26/2024 - Natalie Norris
+Natalie Norris__
+Raftelis Technical Interview Repo__
+Created: 3/26/2024 - Natalie Norris__
 Modified: 3/31/2024 - Natalie Norris
 ## How to run
 ### Ubuntu - mono-complete
@@ -20,7 +20,7 @@ Modified: 3/31/2024 - Natalie Norris
 - [x] I’m attaching a delimited text file containing parcel, owner, address, and other data. Please use these records to fulfill the request.
 - [x] Please sort these records by street name and then street number. Print the results with all columns included to the console, or visualize them in the front-end app.
 - [x] Next, sort these records in a new way, by first name. Print the results with all columns included to the console, or visualize them in the front-end app.
-- [ ] *For extra credit, please add a column to the results that links to Google Maps with the address highlighted. To help with this, the city is Mazama WA.
+- [x] *For extra credit, please add a column to the results that links to Google Maps with the address highlighted. To help with this, the city is Mazama WA.
 - [ ] Please upload your project to Github and reply all to this email with a link to the project.
 - [ ] Please complete this request by 9am PDT on 4/1/24
 
